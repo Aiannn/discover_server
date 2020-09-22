@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :likes
   resources :posts
 
+  get '/feeds', to: 'posts#feeds'
+
   Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do

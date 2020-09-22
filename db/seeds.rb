@@ -34,12 +34,24 @@ post1.image.attach(
     content_type: 'image/jpeg'
 )
 
+post1.track.attach(
+    io: File.open('./public/Sample.mp3'),
+    filename: 'Sample.mp3',
+    content_type: 'audio/mp3'
+)
+
 post2 = Post.create(title: 'Angel', user_id: aian.id)
 
 post2.image.attach(
     io: File.open('./public/download (1).jpeg'),
     filename: 'download (1).jpeg',
     content_type: 'image/jpeg'
+)
+
+post2.track.attach(
+    io: File.open('./public/Sample.mp3'),
+    filename: 'Sample.mp3',
+    content_type: 'audio/mp3'
 )
 
 post3 = Post.create(title: 'Marlboro', user_id: bain.id)
@@ -50,12 +62,24 @@ post3.image.attach(
     content_type: 'image/jpeg'
 )
 
+post3.track.attach(
+    io: File.open('./public/Sample.mp3'),
+    filename: 'Sample.mp3',
+    content_type: 'audio/mp3'
+)
+
 post4 = Post.create(title: 'Babylon', user_id: bain.id)
 
 post4.image.attach(
     io: File.open('./public/download (3).jpeg'),
     filename: 'download (3).jpeg',
     content_type: 'image/jpeg'
+)
+
+post4.track.attach(
+    io: File.open('./public/Sample.mp3'),
+    filename: 'Sample.mp3',
+    content_type: 'audio/mp3'
 )
 
 like1 = Like.create(post_id: post1.id,user_id: aian.id)
@@ -65,3 +89,6 @@ like4 = Like.create(post_id: post4.id,user_id: aian.id)
 
 like5 = Like.create(post_id: post1.id, user_id: bain.id)
 like6 = Like.create(post_id: post4.id, user_id: bain.id)
+
+aian.followers << bain 
+bain.followers << aian 
