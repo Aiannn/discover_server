@@ -29,13 +29,15 @@ class Api::V1::UsersController < ApplicationController
     end 
 
     def update #NEED TO FIGURE OUT HOW TO UPDATE SPECIFIC ATTRIBUTE WITHOUT CHANGING OTHERS
-        @user = User.find_by(username: params[:user][:username])
-        @user.update(user_params)
+        @user = User.find_by(username: params[:user])
+        @user.avatar.purge
+        @user.avatar.attach(params[:avatar])
+        @user.update(name: params[:name], date_of_birth: params[:date_of_birth], bio: params[:bio], email: params[:email])
         render json: {user: UserSerializer.new(@user)}
     end
 
     private
-    def user_params
+    def user_params #I dont need it i guess
         params.require(:user).permit(:name, :date_of_birth, :bio, :email)
     end
 end
