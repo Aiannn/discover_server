@@ -7,7 +7,9 @@ class LikesController < ApplicationController
         render json: @like 
     end
 
-
+    def destroy
+        Like.destroy(params[:id])
+    end
 
     def index
         @user = current_user

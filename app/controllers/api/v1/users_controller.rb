@@ -10,7 +10,7 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def show #DONE
-        @user = User.find_by(id: params[:id])
+        @user = User.find_by(username: params[:slug]) 
         render json: {user: UserSerializer.new(@user)}, status: :accepted
     end
 
