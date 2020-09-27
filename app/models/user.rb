@@ -19,4 +19,12 @@ class User < ApplicationRecord
             followee.posts
         end 
     end
+
+    def total_likes
+        likes = 0 
+        self.posts.each do |post|
+            likes = likes + post.likes.length
+        end 
+        likes 
+    end
 end

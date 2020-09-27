@@ -5,4 +5,8 @@ class Post < ApplicationRecord
     belongs_to :user
     has_many :likes 
     
+    def self.most_liked
+        Post.all.sort_by{|post| -post.likes.length} #.take(6)
+    end
+
 end

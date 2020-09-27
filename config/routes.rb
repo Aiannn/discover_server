@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :follows, only: [:create]
   post '/unfollow', to: 'follows#unfollow' #actually it's delete
   get '/feeds', to: 'posts#feeds'
+  get '/mostliked', to: 'posts#most_liked'
 
   Rails.application.routes.draw do
     namespace :api do

@@ -2,7 +2,12 @@ class PostsController < ApplicationController
 
     def index 
         @posts = Post.all
-        render json: @posts
+        render json: @posts.order('created_at DESC')
+    end
+
+    def most_liked
+        @posts = Post.most_liked
+        render json: @posts 
     end
 
     def feeds
@@ -13,7 +18,8 @@ class PostsController < ApplicationController
                 PostSerializer.new(post)
             end 
         end 
-        render json: {posts: @feeds}
+        # render json: {posts: @feeds}
+        render json: {posts: @feeds }
     end
 
     def create
