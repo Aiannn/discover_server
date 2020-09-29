@@ -27,4 +27,9 @@ class User < ApplicationRecord
         end 
         likes 
     end
+
+    def likes_per_post
+        likes_per_post = (self.total_likes).to_f / self.posts.length 
+        likes_per_post
+    end
 end
