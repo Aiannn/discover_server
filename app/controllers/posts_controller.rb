@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
     def create
         @user = User.find_by(username: params[:user])
-        @post = Post.create(title: params[:title], user_id: @user.id)
+        @post = Post.create(title: params[:title], user_id: @user.id, description: params[:description], hashtag: params[:hashtag])
         @post.image.attach(params[:image])
         @post.track.attach(params[:track])
         render json: @post 
