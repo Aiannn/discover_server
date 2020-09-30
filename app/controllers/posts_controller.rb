@@ -10,17 +10,22 @@ class PostsController < ApplicationController
         render json: @posts 
     end
 
-    def feeds
-        @followees = current_user.followees
-        # @followees = User.first.followees
-        @feeds = @followees.map do |followee|
-            followee.posts.map do |post|
-                PostSerializer.new(post)
-            end 
-        end 
-        # render json: {posts: @feeds}
-        render json: {posts: @feeds }
-    end
+    # def feeds
+    #     @followees = current_user.followees
+    #     # @followees = User.first.followees
+    #     @feeds = @followees.map do |followee|
+    #         followee.posts.map do |post|
+    #             PostSerializer.new(post)
+    #         end 
+    #     end 
+    #     # render json: {posts: @feeds}
+    #     render json: {posts: @feeds }
+    # end
+
+    def feeds 
+        @feeds = current_user.feeds 
+        render json: @feeds 
+    end 
 
     def create
         @user = User.find_by(username: params[:user])
