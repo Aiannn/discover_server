@@ -15,8 +15,24 @@ class User < ApplicationRecord
     has_many :liked_posts, through: :likes, source: :post 
 
     def feeds
+        posts = []
         self.followees.map do |followee|
-            followee.posts
+            posts << followee.posts 
         end 
+        concatenated = posts.flatten
+        concatenated
+    end
+
+    def total_likes
+        likes = 0 
+        self.posts.each do |post|
+            likes = likes + post.likes.length
+        end 
+        likes 
+    end
+
+    def likes_per_post
+        likes_per_post = (self.total_likes).to_f / self.posts.length 
+        likes_per_post
     end
 end
