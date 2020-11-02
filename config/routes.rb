@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   resources :likes
   resources :posts
+  resources :follows, only: [:create]
+  post '/unfollow', to: 'follows#unfollow' #actually it's delete
+  get '/feeds', to: 'posts#feeds'
+  get '/mostliked', to: 'posts#most_liked'
 
   Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
-        resources :users#, only: [:create]
+        resources :users, param: :slug#, only: [:create]
         #Login route
         post '/login', to: 'auth#create'
         #Retrieve user route 
